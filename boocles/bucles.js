@@ -130,3 +130,72 @@
 // console.log(`la suma impar es ${impar}`);
 
 /**11 */
+// let numerosDesordenados = [8, 3, 6, 1, 9, 4, 7, 2, 10, 5];
+// function menor(array){
+//         let numero=-10000000
+//         for (let indexj = 0; indexj < array.length; indexj++) {
+//             if (numero<array[indexj]){
+//                 numero=array[indexj]   
+//             }
+//         }
+//         console.log(numero);
+//     }
+// menor(numerosDesordenados)
+
+/**12 */
+// let numerosDesordenados = [8, 3, 6, 1, 9, 4, 7, 2, 10, 5];
+// function menor(array){
+//         let numero=10000000
+//         for (let indexj = 0; indexj < array.length; indexj++) {
+//             if (numero>array[indexj]){
+//                 numero=array[indexj]   
+//             }
+//         }
+//         console.log(numero);
+//     }
+// menor(numerosDesordenados)
+
+/**13 */
+
+
+
+
+
+/**16 */
+// function menor(array){
+//     let numero=1000000
+//     for (let indexj = 0; indexj < array.length; indexj++) {
+//         if (numero>array[indexj]){
+//             numero=array[indexj]   
+//         }
+        
+//     }
+//     return(numero)
+// }
+// function encontrarIndice(array,numero){
+//     let index
+//     for (let indice = 0; indice < array.length; indice++) {
+
+//             if (array[indice]== numero){
+//                 index=indice
+//                 break
+//             }  
+//         }
+//     return index
+// }
+
+// let numerosDesordenados = [8, 3, 6, 1, 9, 4, 7, 2, 10, 5];
+// let numerosOrdenados=[]
+// let indice=0
+// let menori
+// let maximo=numerosDesordenados.length
+
+// for (let index = 0; index < maximo; index++) {
+
+//     menori=menor(numerosDesordenados)
+//     numerosOrdenados.push(menori)
+//     indice=encontrarIndice(numerosDesordenados,menori)
+//     numerosDesordenados.splice(indice,1)
+
+// }
+// console.log(numerosOrdenados);

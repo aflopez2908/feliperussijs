@@ -110,3 +110,23 @@
 
 /**eje 10 */
 
+// let entrada=null
+// let par=0
+// let impar=0
+
+// while (entrada != 0) {
+
+//     entrada= parseInt(prompt("diga un numero"))
+//         if (entrada%2 != 0){
+//         impar=impar+entrada
+
+//     }
+//     else{
+//         par=par+entrada
+
+//     }
+// }
+// console.log(`la suma par es ${par}`);
+// console.log(`la suma impar es ${impar}`);
+
+/**11 */

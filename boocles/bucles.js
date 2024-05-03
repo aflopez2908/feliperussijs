@@ -156,7 +156,57 @@
 // menor(numerosDesordenados)
 
 /**13 */
+// let nombre1=prompt("nombre jugador 1")
+// let nombre2=prompt("nombre jugador 2")
+// let jugador1
+// let jugador2
 
+// while (true){
+
+// jugador1= prompt("seleccion jugador 1? ").toUpperCase()
+// jugador2= prompt("seleccion jugador 2? ").toUpperCase()
+// if (jugador1==jugador2){
+//     console.log("empate");
+// }
+
+// else if(jugador1==="PAPEl" && jugador2==="PIEDRA"){
+//     console.log("JUGADOR 1 GANA " + nombre1);
+//     break
+// }
+
+// else if(jugador1==="TIJERA" && jugador2==="PAPEL"){
+//     console.log("JUGADOR 1 GANA " + nombre1);
+//     break
+// }
+
+// else if(jugador1==="PIEDRA" && jugador2==="TIJERA"){
+//     console.log("JUGADOR 1 GANA " + nombre1);
+//     break
+// }
+// else{
+//     console.log("JUGADOR 2 GANA "+ nombre2);
+//     break
+// }
+// }
+
+/**14 */
+
+// for (let index = 1; index < 6; index++) {
+//     let line = "";
+//     for (let i = 0; i < index; i++) {
+//         line += "*";
+//     }
+//     console.log(line);
+// }
+
+// /**15 */
+// for (let index = 5; index > 0; index--) {
+//     let line = "";
+//     for (let i = 0; i < index; i++) {
+//         line += "*";
+//     }
+//     console.log(line);
+// }
 
 
 

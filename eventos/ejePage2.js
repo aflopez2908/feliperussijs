@@ -2,114 +2,230 @@ let notas = [];
 let nota = {};
 let titulo = document.querySelector("#title");
 let contenido = document.querySelector("#content");
-let gId=1
+let contenedor = document.querySelector("#container");
+let gId = 0;
 
-function llenadoArray(){
-    nota = {
-        id:gId++,
-        tituloNota: titulo.value,
-        contenidoNota: contenido.value,
-        realizada:false
-      };
-      notas.push(nota);
+function llenadoArray() {
+  nota = {
+    id: gId++,
+    tituloNota: titulo.value,
+    contenidoNota: contenido.value,
+    realizada: false,
+  };
+  notas.push(nota);
 }
-
-
-
-function crearNota() {
-    document.getElementById("container").innerHTML = "";
-    llenadoArray()
-
+function definicion() {
+  contenedor.innerHTML = ""
+  
+  llenadoArray();
   for (let index = 0; index < notas.length; index++) {
+    let nuevaTarjeta = document.createElement("div");
+    nuevaTarjeta.classList.add("tarjeta");
+    nuevaTarjeta.id = notas[index].id;
 
-    let divCard = document.createElement("div");
-    divCard.classList.add("card", "bg-primary","m-1");
-    divCard.style.width = "10rem";
+    nuevaTarjeta.innerHTML = `
+      <div class="card bg-primary" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${notas[index].tituloNota}</h5>
+          <p class="card-text">${notas[index].contenidoNota}</p>
+          <button onclick="borrarTarjeta(event)" class="btn btn-danger">delete</button>
+        </div>
+      </div>
+    `;
+    contenedor.appendChild(nuevaTarjeta);
 
-    divCard.id = index;
-
-   let divCardBody = document.createElement("div");
-    divCardBody.classList.add("card-body");
-
-    let contenidoElemento = document.createElement("p");
-    contenidoElemento.classList.add("card-text");
-    contenidoElemento.textContent = notas[index].contenidoNota;
-
-
+    // Crear el checkbox
     let inputCheckbox = document.createElement("input");
-
-
     inputCheckbox.setAttribute("type", "checkbox");
     inputCheckbox.setAttribute("class", "form-check-input");
-    inputCheckbox.setAttribute("value", "");
-    inputCheckbox.setAttribute("id", "flexCheckChecked");
     inputCheckbox.checked = notas[index].realizada;
-    // Agregar un listener de evento al checkbox para manejar el cambio de estado
+
+    // Agregar el checkbox al cuerpo de la tarjeta
+    nuevaTarjeta.querySelector(".card-body").appendChild(inputCheckbox);
+
+    // Agregar un event listener al checkbox para actualizar el estado
     inputCheckbox.addEventListener("change", function() {
-    if (this.checked) {
-      // Si el checkbox está marcado, aplicar el tachado a la descripción
-      contenidoElemento.style.textDecoration = "line-through";
-      notas[index].realizada=true
-      
-    } else {
-      // Si el checkbox no está marcado, quitar el tachado de la descripción
-      contenidoElemento.style.textDecoration = "none";
-      notas[index].realizada=false
-    }
-  });
-
-
-    let tituloElemento = document.createElement("h5");
-    tituloElemento.classList.add("card-title");
-    tituloElemento.textContent = notas[index].tituloNota;
-
-
-
-    let btnDanger = document.createElement("button");
-    btnDanger.classList.add("btn", "btn-danger");
-    btnDanger.textContent = "eliminar";
-
-     btnDanger.onclick = function() {
-      eliminarNota(divCard.id); 
-    };
-
-
-    divCardBody.appendChild(tituloElemento);
-    divCardBody.appendChild(inputCheckbox)
-    divCardBody.appendChild(contenidoElemento);
-    divCardBody.appendChild(btnDanger);
-
-    divCard.appendChild(divCardBody);
-
-    let container = document.getElementById("container");
-    container.appendChild(divCard);
-
-  }
-
-  function eliminarNota(id) {
-    // Obtener el elemento de la carta
-    var carta = document.getElementById(id);
-    notas.splice(parseInt(id), 1);
-    gId=(notas.length+1)
-    for (let nuevo = 0; nuevo < notas.length; nuevo++) {
-        notas[nuevo].id=nuevo
-    }
-
-    carta.parentNode.removeChild(carta);
-
-  }
+        if (inputCheckbox.checked) {
+            // Si el checkbox está marcado, aplicar el tachado a la descripción
+            notas[index].realizada = true;
+            nuevaTarjeta.querySelector(".card-text").style.textDecoration = "line-through";
+        } else {
+            // Si el checkbox no está marcado, quitar el tachado de la descripción
+            notas[index].realizada = false;
+            nuevaTarjeta.querySelector(".card-text").style.textDecoration = "none";
+        }
+    });
 }
 
+}
+function borrarTarjeta(event) {
+  let indice = -1;
+  var tarjeta = event.target.closest(".tarjeta");
+  idBuscado = tarjeta.id;
 
+  for (let index = 0; index < notas.length; index++) {
+    if (notas[index].id == idBuscado) {
+      indice = index;
+    }
+  }
 
+  console.log(indice + " este es mi indice");
 
+  if (indice !== -1) {
+    notas.splice(indice, 1);
+    contenedor.innerHTML = "";
+
+    for (let index = 0; index < notas.length; index++) {
+      let nuevaTarjeta = document.createElement("div");
+      nuevaTarjeta.classList.add("tarjeta");
+      nuevaTarjeta.id = notas[index].id;
+  
+      nuevaTarjeta.innerHTML = `
+        <div class="card bg-primary" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">${notas[index].tituloNota}</h5>
+            <p class="card-text">${notas[index].contenidoNota}</p>
+            <button onclick="borrarTarjeta(event)" class="btn btn-danger">delete</button>
+          </div>
+        </div>
+      `;
+      contenedor.appendChild(nuevaTarjeta);
+  
+      // Crear el checkbox
+      let inputCheckbox = document.createElement("input");
+      inputCheckbox.setAttribute("type", "checkbox");
+      inputCheckbox.setAttribute("class", "form-check-input");
+      inputCheckbox.checked = notas[index].realizada;
+  
+      // Agregar el checkbox al cuerpo de la tarjeta
+      nuevaTarjeta.querySelector(".card-body").appendChild(inputCheckbox);
+  
+      // Agregar un event listener al checkbox para actualizar el estado
+      inputCheckbox.addEventListener("change", function() {
+          if (inputCheckbox.checked) {
+              // Si el checkbox está marcado, aplicar el tachado a la descripción
+              notas[index].realizada = true;
+              nuevaTarjeta.querySelector(".card-text").style.textDecoration = "line-through";
+          } else {
+              // Si el checkbox no está marcado, quitar el tachado de la descripción
+              notas[index].realizada = false;
+              nuevaTarjeta.querySelector(".card-text").style.textDecoration = "none";
+          }
+      });
+  }
+  }
+}
 function borrarContenido() {
-  titulo.value=""
-  contenido.value=""
+  titulo.value = "";
+  contenido.value = "";
 }
 
 
 
+// function filtradoCompletado(event){
 
 
 
+//   var checkbox = document.getElementById("switch");
+//   console.log(checkbox.checked);
+
+//   if (checkbox.checked){
+//     contenedor.innerHTML = "";
+
+//   }else{
+//     contenedor.innerHTML = "";
+//     for (let index = 0; index < notas.length; index++) {
+//       let nuevaTarjeta = document.createElement("div");
+//       nuevaTarjeta.classList.add("tarjeta");
+//       nuevaTarjeta.id = notas[index].id;
+  
+//       nuevaTarjeta.innerHTML = `
+//         <div class="card bg-primary" style="width: 18rem;">
+//           <div class="card-body">
+//             <h5 class="card-title">${notas[index].tituloNota}</h5>
+//             <p class="card-text">${notas[index].contenidoNota}</p>
+//             <button onclick="borrarTarjeta(event)" class="btn btn-danger">delete</button>
+//           </div>
+//         </div>
+//       `;
+//       contenedor.appendChild(nuevaTarjeta);
+  
+//       // Crear el checkbox
+//       let inputCheckbox = document.createElement("input");
+//       inputCheckbox.setAttribute("type", "checkbox");
+//       inputCheckbox.setAttribute("class", "form-check-input");
+//       inputCheckbox.checked = notas[index].realizada;
+  
+//       // Agregar el checkbox al cuerpo de la tarjeta
+//       nuevaTarjeta.querySelector(".card-body").appendChild(inputCheckbox);
+  
+//       // Agregar un event listener al checkbox para actualizar el estado
+//       inputCheckbox.addEventListener("change", function() {
+//           if (inputCheckbox.checked) {
+//               // Si el checkbox está marcado, aplicar el tachado a la descripción
+//               notas[index].realizada = true;
+//               nuevaTarjeta.querySelector(".card-text").style.textDecoration = "line-through";
+//           } else {
+//               // Si el checkbox no está marcado, quitar el tachado de la descripción
+//               notas[index].realizada = false;
+//               nuevaTarjeta.querySelector(".card-text").style.textDecoration = "none";
+//           }
+//       });
+//   }
+//   }
+
+
+
+
+
+
+// }
+
+var checkbox = document.getElementById("switch");
+
+checkbox.addEventListener("change", function() {
+  // Verificar si el checkbox está marcado o no y mostrar un mensaje
+  if (checkbox.checked) {
+    contenedor.innerHTML = "";
+  } else {
+    contenedor.innerHTML = "";
+        for (let index = 0; index < notas.length; index++) {
+          let nuevaTarjeta = document.createElement("div");
+          nuevaTarjeta.classList.add("tarjeta");
+          nuevaTarjeta.id = notas[index].id;
+      
+          nuevaTarjeta.innerHTML = `
+            <div class="card bg-primary" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">${notas[index].tituloNota}</h5>
+                <p class="card-text">${notas[index].contenidoNota}</p>
+                <button onclick="borrarTarjeta(event)" class="btn btn-danger">delete</button>
+              </div>
+            </div>
+          `;
+          contenedor.appendChild(nuevaTarjeta);
+      
+          // Crear el checkbox
+          let inputCheckbox = document.createElement("input");
+          inputCheckbox.setAttribute("type", "checkbox");
+          inputCheckbox.setAttribute("class", "form-check-input");
+          inputCheckbox.checked = notas[index].realizada;
+      
+          // Agregar el checkbox al cuerpo de la tarjeta
+          nuevaTarjeta.querySelector(".card-body").appendChild(inputCheckbox);
+      
+          // Agregar un event listener al checkbox para actualizar el estado
+          inputCheckbox.addEventListener("change", function() {
+              if (inputCheckbox.checked) {
+                  // Si el checkbox está marcado, aplicar el tachado a la descripción
+                  notas[index].realizada = true;
+                  nuevaTarjeta.querySelector(".card-text").style.textDecoration = "line-through";
+              } else {
+                  // Si el checkbox no está marcado, quitar el tachado de la descripción
+                  notas[index].realizada = false;
+                  nuevaTarjeta.querySelector(".card-text").style.textDecoration = "none";
+              }
+          });
+      }
+  }
+});

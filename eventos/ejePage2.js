@@ -53,15 +53,13 @@ checkbox.addEventListener("change", function() {
 
   // Verificar si el checkbox está marcado o no y mostrar un mensaje
   if (checkbox.checked) {
+    let temporalAray=[]
     contenedor.innerHTML = "";
     for (let index = 0; index < notas.length; index++) {
       if (notas[index].realizada){
-        verificadoArray.push(notas[index]);
-        
-
-      }
-      
+        temporalAray.push(notas[index]);}
     }
+    verificadoArray=temporalAray
     imprimir(verificadoArray)
     
   } else {

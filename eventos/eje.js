@@ -5,7 +5,7 @@ function establecerValorEnInput() {
     // Selecciona el primer elemento con la clase "resultado"
     let resultado = document.querySelector(".resultado");
     // Actualiza el contenido del elemento con el IMC calculado
-    resultado.textContent = "El IMC es: " + imc.toFixed(2); // Redondea el IMC a dos decimales
+    resultado.textContent = "Resultado: " + imc.toFixed(2); // Redondea el IMC a dos decimales
 }
 
 

@@ -34,29 +34,38 @@
     </nav>
 
     </header>
-    <div class="imc_container">
+
+    <h2 class="px-5 mt-5">Calculadora IMC</h2>
+    
+    <div class="imc_container bg-secondary m-5 p-4 text-light border border-secondary-subtle">
     <form class="imc_form">
         <div class="mb-3">
-          <label for="alturaform" class="form-label">Cual es tu altura en cm</label>
-          <input type="number" class="form-control" id="alturaform">
+          <label for="alturaform" class="form-label fw-bold ">Altura</label>
+          <p class="description">En centimetros</p>
+          <input type="number" class="form-control" id="alturaform" aria-required="true">
         </div>
         <div class="mb-3">
-          <label for="pesoform" class="form-label">Cual es tu peso</label>
+          <label for="pesoform" class="form-label fw-bold">Cual es tu peso</label>
+          <p class="description">En kilogramos</p>
           <input type="number" class="form-control" id="pesoform">
         </div>
         <button type="button" class="btn btn-primary" onclick="establecerValorEnInput()">Submit</button>
       </form>
 
-      <h1>tu altura es</h1>
-      <h2 class="resultado"></h2>
+      <div class="d-flex align-items-center">
+        <h2 class="resultado"></h2>
+      </div>
+
 
     </div>
 
-    <div class="divisa_container">
-      <label for="input1">Input 1:</label>
-      <input type="number" id="input1">
-      <label for="input2">Input 2:</label>
-      <input type="number" id="input2">
+    <h2 class="px-5 mt-5">conversor de divisas</h2>
+
+    <div class="divisa_container bg-secondary m-5 p-4 text-light border border-secondary-subtle d-flex justify-content-center ">
+      <label for="input1" class="fs-2">Dolar Estadounidense</label>
+      <input type="number" id="input1" style="height: 2.5rem; margin: 0 1rem 0 1rem;" >
+      <label for="input2" class="fs-2">Peso Colombiano</label>
+      <input type="number" id="input2"  style="height: 2.5rem;">
 
     </div>
 

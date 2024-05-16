@@ -19,7 +19,7 @@ function llenadoArray() {
 function definicion() {
   contenedor.innerHTML = ""
   llenadoArray();
-  imprimir()
+  imprimir(notas)
 }
 
 function borrarTarjeta(event) {
@@ -39,7 +39,7 @@ function borrarTarjeta(event) {
     notas.splice(indice, 1);
     contenedor.innerHTML = "";
 
-    imprimir()
+    imprimir(notas)
   }
 }
 function borrarContenido() {
@@ -54,15 +54,19 @@ checkbox.addEventListener("change", function() {
   // Verificar si el checkbox está marcado o no y mostrar un mensaje
   if (checkbox.checked) {
     contenedor.innerHTML = "";
+
+    
   } else {
     contenedor.innerHTML = "";
-        imprimir();
+
+  
+        imprimir(notas);
   }
 });
 
 
 
-function imprimir() {
+function imprimir(notas) {
   for (let index = 0; index < notas.length; index++) {
     let nuevaTarjeta = document.createElement("div");
     nuevaTarjeta.classList.add("tarjeta");

@@ -1,9 +1,11 @@
 let notas = [];
 let nota = {};
-
+let verificadoArray= []
+var checkbox = document.getElementById("switch");
 let titulo = document.querySelector("#title");
 let contenido = document.querySelector("#content");
 let contenedor = document.querySelector("#container");
+let searchBar = document.getElementById("search");
 let gId = 0;
 
 function llenadoArray() {
@@ -47,25 +49,26 @@ function borrarContenido() {
   contenido.value = "";
 }
 
-
-var checkbox = document.getElementById("switch");
-
 checkbox.addEventListener("change", function() {
+
   // Verificar si el checkbox está marcado o no y mostrar un mensaje
   if (checkbox.checked) {
     contenedor.innerHTML = "";
+    for (let index = 0; index < notas.length; index++) {
+      if (notas[index].realizada){
+        verificadoArray.push(notas[index]);
+        
 
+      }
+      
+    }
+    imprimir(verificadoArray)
     
   } else {
     contenedor.innerHTML = "";
-
-  
         imprimir(notas);
   }
 });
-
-
-
 function imprimir(notas) {
   for (let index = 0; index < notas.length; index++) {
     let nuevaTarjeta = document.createElement("div");
@@ -106,3 +109,24 @@ function imprimir(notas) {
     });
   }
 }
+
+searchBar.addEventListener("keyup", function() {
+  let searchTerm = searchBar.value.toLowerCase();
+
+  if (checkbox.checked){
+    let filteredNotes = verificadoArray.filter(function(nota) {
+      return nota.tituloNota.toLowerCase().includes(searchTerm) || 
+             nota.contenidoNota.toLowerCase().includes(searchTerm);
+    });
+    contenedor.innerHTML = "";
+    imprimir(filteredNotes);
+  }
+  else{let filteredNotes = notas.filter(function(nota) {
+    return nota.tituloNota.toLowerCase().includes(searchTerm) || 
+           nota.contenidoNota.toLowerCase().includes(searchTerm);
+  });
+  contenedor.innerHTML = "";
+  imprimir(filteredNotes);}
+
+  
+});

@@ -74,10 +74,12 @@ function imprimir(notas) {
     nuevaTarjeta.id = notas[index].id;
 
     nuevaTarjeta.innerHTML = `
-            <div class="card bg-primary" style="width: 18rem;">
-              <div class="card-body">
-                <h5 class="card-title">${notas[index].tituloNota}</h5>
+            <div class="card bg-ligth p-1 m-2" style="width: 18rem;">
+              <div class="card-body bg-primary">
+                <div class="my-1">
+                <h5 class="card-title ">${notas[index].tituloNota}</h5>
                 <p class="card-text">${notas[index].contenidoNota}</p>
+                </div>
                 <button onclick="borrarTarjeta(event)" class="btn btn-danger">delete</button>
               </div>
             </div>
